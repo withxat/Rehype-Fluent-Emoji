@@ -377,4 +377,4 @@ pnpm run build
 **rehype-fluent-emoji** © [Xat](https://github.com/withxat)，基于 [MIT](https://github.com/withxat/rehype-fluent-emoji/blob/main/LICENSE) 许可证发布。<br>
 由 Xat 与贡献者共同维护（[贡献者列表](https://github.com/withxat/rehype-fluent-emoji/graphs/contributors)）。
 
-> [Blog](https://blog.xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · Email [i@xat.sh](mailto:i@xat.sh)
+> [Blog](https://xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · Email [i@xat.sh](mailto:i@xat.sh)
