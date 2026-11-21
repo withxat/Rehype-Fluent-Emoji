@@ -46,6 +46,7 @@
 		"build": "tsdown",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
+		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"prepack": "pnpm run build",
