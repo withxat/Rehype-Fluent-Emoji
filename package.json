@@ -4,8 +4,16 @@
 	"version": "1.0.3",
 	"packageManager": "pnpm@11.5.1",
 	"description": "Rehype plugin to replace Unicode emoji with Fluent Emoji images",
-	"author": "",
+	"author": "Xat <i@xat.sh> (https://xat.sh)",
 	"license": "MIT",
+	"homepage": "https://github.com/withxat/rehype-fluent-emoji",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/withxat/rehype-fluent-emoji.git"
+	},
+	"bugs": {
+		"url": "https://github.com/withxat/rehype-fluent-emoji/issues"
+	},
 	"keywords": [
 		"emoji",
 		"fluent",
