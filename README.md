@@ -1,12 +1,19 @@
 # rehype-fluent-emoji
 
+[![CI](https://github.com/withxat/rehype-fluent-emoji/actions/workflows/ci.yml/badge.svg)](https://github.com/withxat/rehype-fluent-emoji/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/rehype-fluent-emoji.svg)](https://www.npmjs.com/package/rehype-fluent-emoji)
+[![Node.js 18+](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/withxat/rehype-fluent-emoji/blob/main/LICENSE)
 
 English | [简体中文](./README.zh-CN.md)
 
 A [rehype](https://github.com/rehypejs/rehype) plugin that replaces Unicode emoji in text nodes with [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) visuals.
 
 Works at the HAST (rehype) stage, is SSR-safe, and outputs `<span>` elements that keep the original emoji character in the DOM for copy and screen readers.
+
+![HTML containing Unicode emoji transformed into large, colorful Fluent cat and rocket illustrations](https://raw.githubusercontent.com/withxat/rehype-fluent-emoji/main/docs/assets/overview.jpg)
+
+> **Asset note:** This package does not bundle emoji images. The plugin generates asset URLs; use the included `sync` command to download only the assets your content uses.
 
 ## Features
 
@@ -18,6 +25,8 @@ Works at the HAST (rehype) stage, is SSR-safe, and outputs `<span>` elements tha
 - Leaves emoji inside `<code>`, `<pre>`, and similar elements unchanged
 
 Requires Node.js 18+.
+
+**Jump to:** [Installation](#installation) · [Usage](#usage) · [How it works](#how-it-works) · [Examples](#examples) · [API](#api) · [Framework notes](#framework-notes) · [Accessibility](#accessibility) · [Development](#development)
 
 ## Installation
 
@@ -38,6 +47,14 @@ const file = await rehype()
 
 console.log(String(file))
 ```
+
+If your source files live in `content/`, download the matching assets with:
+
+```sh
+npx rehype-fluent-emoji sync content --out public/emoji
+```
+
+This writes only the referenced assets to `public/emoji`. Make sure your site serves that directory at `/emoji/...`.
 
 ### Before
 
@@ -269,10 +286,18 @@ Assets are downloaded from the [`webp`](https://github.com/withxat/fluentui-emoj
 - `flat` — flat style
 - `high-contrast` — high-contrast style
 
+![The same cat emoji shown in 3d, color, flat, and high-contrast styles](https://raw.githubusercontent.com/withxat/rehype-fluent-emoji/main/docs/assets/styles.jpg)
+
 ```ts
 rehypeFluentEmoji({
   style: '3d',
 })
+```
+
+When self-hosting a non-default style, pass the same style to the sync command:
+
+```sh
+npx rehype-fluent-emoji sync content --out public/emoji --style 3d
 ```
 
 You can still override `ext` if you host assets in another format.
@@ -288,6 +313,7 @@ import type { RehypeFluentEmojiOptions } from 'rehype-fluent-emoji'
 ### Astro
 
 ```ts
+import { defineConfig } from 'astro/config'
 import rehypeFluentEmoji from 'rehype-fluent-emoji'
 
 export default defineConfig({
@@ -368,13 +394,19 @@ This preserves literal emoji in source code, terminal output, and other contexts
 
 ```sh
 pnpm install
+pnpm run lint
+pnpm run typecheck
 pnpm test
 pnpm run build
 ```
 
+## Credits
+
+Documentation preview images use [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) artwork as visual references. See the [documentation asset license](https://github.com/withxat/rehype-fluent-emoji/blob/main/docs/assets/LICENSE.md).
+
 ## Author
 
-**rehype-fluent-emoji** © [Xat](https://github.com/withxat), Released under the [MIT](https://github.com/withxat/rehype-fluent-emoji/blob/main/LICENSE) License.<br>
+**rehype-fluent-emoji** © [Xat](https://github.com/withxat), released under the [MIT](https://github.com/withxat/rehype-fluent-emoji/blob/main/LICENSE) License.<br>
 Authored and maintained by Xat with help from contributors ([list](https://github.com/withxat/rehype-fluent-emoji/graphs/contributors)).
 
 > [Blog](https://xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · Email [i@xat.sh](mailto:i@xat.sh)

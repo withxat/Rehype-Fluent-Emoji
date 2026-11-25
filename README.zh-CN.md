@@ -1,12 +1,19 @@
 # rehype-fluent-emoji
 
+[![CI](https://github.com/withxat/rehype-fluent-emoji/actions/workflows/ci.yml/badge.svg)](https://github.com/withxat/rehype-fluent-emoji/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/rehype-fluent-emoji.svg)](https://www.npmjs.com/package/rehype-fluent-emoji)
+[![Node.js 18+](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/withxat/rehype-fluent-emoji/blob/main/LICENSE)
 
 [English](./README.md) | 简体中文
 
 一个 [rehype](https://github.com/rehypejs/rehype) 插件，用 [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) 视觉样式替换文本节点里的 Unicode emoji。
 
 它运行在 HAST（rehype）阶段，支持 SSR，并输出 `<span>` 元素。原始 emoji 字符仍保留在 DOM 里，方便复制和屏幕阅读器读取。
+
+![包含 Unicode emoji 的 HTML 转换为色彩丰富的 Fluent 猫咪和火箭插图](https://raw.githubusercontent.com/withxat/rehype-fluent-emoji/main/docs/assets/overview.jpg)
+
+> **资源说明：** 这个包不内置 emoji 图片。插件只生成资源 URL；可以使用自带的 `sync` 命令，只下载内容实际用到的资源。
 
 ## 特性
 
@@ -18,6 +25,8 @@
 - 不处理 `<code>`、`<pre>` 等元素中的 emoji
 
 需要 Node.js 18+。
+
+**快速跳转：** [安装](#安装) · [使用](#使用) · [工作方式](#工作方式) · [示例](#示例) · [API](#api) · [框架说明](#框架说明) · [可访问性](#可访问性) · [开发](#开发)
 
 ## 安装
 
@@ -38,6 +47,14 @@ const file = await rehype()
 
 console.log(String(file))
 ```
+
+如果源文件位于 `content/`，可以用下面的命令下载对应资源：
+
+```sh
+npx rehype-fluent-emoji sync content --out public/emoji
+```
+
+这只会把引用到的资源写入 `public/emoji`。请确保站点会通过 `/emoji/...` 提供这个目录中的文件。
 
 ### 转换前
 
@@ -269,10 +286,18 @@ toFluentEmojiUrl('😺', { style: '3d' }) // '/emoji/1f63a_3d.webp'
 - `flat`：扁平样式
 - `high-contrast`：高对比度样式
 
+![同一个猫咪 emoji 的 3d、color、flat 和 high-contrast 样式对比](https://raw.githubusercontent.com/withxat/rehype-fluent-emoji/main/docs/assets/styles.jpg)
+
 ```ts
 rehypeFluentEmoji({
   style: '3d',
 })
+```
+
+自托管非默认样式时，请向 sync 命令传入相同的样式：
+
+```sh
+npx rehype-fluent-emoji sync content --out public/emoji --style 3d
 ```
 
 如果你托管的是其他格式，也可以继续覆盖 `ext`。
@@ -288,6 +313,7 @@ import type { RehypeFluentEmojiOptions } from 'rehype-fluent-emoji'
 ### Astro
 
 ```ts
+import { defineConfig } from 'astro/config'
 import rehypeFluentEmoji from 'rehype-fluent-emoji'
 
 export default defineConfig({
@@ -368,9 +394,15 @@ public/emoji/1f468-200d-1f469-200d-1f467-200d-1f466_color.webp
 
 ```sh
 pnpm install
+pnpm run lint
+pnpm run typecheck
 pnpm test
 pnpm run build
 ```
+
+## 致谢
+
+文档预览图以 [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) 作品为视觉参考，详见[文档资源许可](https://github.com/withxat/rehype-fluent-emoji/blob/main/docs/assets/LICENSE.md)。
 
 ## 作者
 
