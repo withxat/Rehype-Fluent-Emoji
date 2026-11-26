@@ -48,6 +48,7 @@
 		"lint:fix": "eslint --fix",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
+		"test:browser": "playwright test",
 		"test:watch": "vitest",
 		"prepack": "pnpm run build",
 		"release": "bumpp && pnpm publish"
@@ -58,6 +59,7 @@
 		"unist-util-visit": "^5.0.0"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.65.1",
 		"@types/node": "^25.9.1",
 		"@withxat/eslint-config": "^1.1.4",
 		"@withxat/tsconfig": "^1.0.4",

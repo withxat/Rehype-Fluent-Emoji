@@ -398,7 +398,11 @@ pnpm run lint
 pnpm run typecheck
 pnpm test
 pnpm run build
+pnpm exec playwright install chromium
+pnpm run test:browser
 ```
+
+`test:browser` 只在 Linux 上的 Chrome 运行。它分别检查选中文本和剪贴板是否仍是原来的 Unicode，其中包括一个变体选择符。`pnpm test` 不会启动浏览器。
 
 ## 致谢
 
