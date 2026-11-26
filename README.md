@@ -398,7 +398,11 @@ pnpm run lint
 pnpm run typecheck
 pnpm test
 pnpm run build
+pnpm exec playwright install chromium
+pnpm run test:browser
 ```
+
+`test:browser` is Linux Chrome only. It checks that selecting rendered emoji and copying them to the clipboard both return the original Unicode, including a variation selector. `pnpm test` does not launch a browser.
 
 ## Credits
 
